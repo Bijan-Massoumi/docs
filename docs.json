@@ -38,9 +38,15 @@
             "pages": ["api-reference/introduction"]
           },
           {
-            "group": "Endpoints",
+            "group": "AI Endpoints",
             "openapi": {
               "source": "api-reference/openapi.json"
+            }
+          },
+          {
+            "group": "Core Metrics Endpoints",
+            "openapi": {
+              "source": "api-reference/coremetrics-openapi.json"
             }
           }
         ]
