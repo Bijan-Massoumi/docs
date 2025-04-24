@@ -43,7 +43,7 @@
     }
   ],
   "paths": {
-    "/ai/v1/chat/completions": {
+    "/v1/chat/completions": {
       "post": {
         "operationId": "createChatCompletion",
         "summary": "Chat Completion",
@@ -124,7 +124,7 @@
         }
       }
     },
-    "/ai/v1/classification/extraction": {
+    "/v1/classification/extraction": {
       "post": {
         "operationId": "extractEntities",
         "summary": "Entity Extraction",
@@ -199,7 +199,7 @@
         }
       }
     },
-    "/ai/openai/chat/completions": {
+    "/openai/chat/completions": {
       "post": {
         "operationId": "createChatCompletionOpenAI",
         "summary": "OpenAI-Compatible Chat Completion",
