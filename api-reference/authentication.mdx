@@ -1,0 +1,84 @@
+---
+title: "Authentication"
+description: "Secure access to Messari APIs through API key authentication"
+---
+
+# API Authentication
+
+Secure and reliable API access is a critical foundation for building with Messari data. This guide covers everything you need to know about authentication for Messari APIs.
+
+## API Keys
+
+<Card title="API Key Authentication" icon="key">
+  All Messari API endpoints require an API key for authentication. This ensures
+  secure access and proper attribution for your API requests.
+</Card>
+
+### Generating an API Key
+
+<img src="/images/api-key.png" alt="Messari API Key Generation Interface" />
+
+<Steps>
+  <Step title="Access the API Dashboard">
+    Navigate to the [API Access page](https://messari.io/api-access) in your
+    Messari account
+  </Step>
+  <Step title="Create New Key">Click the "Generate API Key" button</Step>
+  <Step title="Secure Your Key">
+    Store your API key in a secure location - it won't be shown again
+  </Step>
+</Steps>
+
+## Permissions
+
+<Note>
+  By default, all users have access to the Metrics, News, Assets, and Market
+  Data API endpoints. For access to additional services, please contact
+  [sales@messari.io](mailto:sales@messari.io).
+</Note>
+
+## Using the API Key
+
+The API key must be included in the request headers using the `x-messari-api-key` header field:
+
+```json
+{
+  "headers": {
+    "x-messari-api-key": "YOUR_API_KEY_HERE"
+  }
+}
+```
+
+### Example Request (cURL)
+
+The following example demonstrates how to send a request to the Messari API using cURL with the `x-messari-api-key` header:
+
+```bash
+curl --location 'https://api.messari.io/ai/v1/chat/completions' \
+--header 'x-messari-api-key: YOUR_API_KEY_HERE' \
+--header 'Content-Type: application/json' \
+--data '{
+    "messages": [
+        {
+            "role": "user",
+            "content": "Briefly explain what the Hyperliquid HyperEVM is"
+        }
+    ],
+    "verbosity": "succinct",
+    "response_format": "markdown"
+}'
+```
+
+## Security Best Practices
+
+<CardGroup cols={3}>
+  <Card title="Secure Storage" icon="lock">
+    Never share your API key publicly or commit it to version control
+  </Card>
+  <Card title="Environment Variables" icon="leaf">
+    Store API keys in environment variables rather than hardcoding them
+  </Card>
+  <Card title="Regular Rotation" icon="rotate">
+    Periodically update your API key for security purposes
+  </Card>
+</CardGroup>

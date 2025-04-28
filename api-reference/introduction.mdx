@@ -1,33 +1,45 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "Introduction"
+description: "Unlock Institutional-Grade Crypto Data via an extensive catalog of developer APIs"
 ---
 
+## Welcome to Messari APIs
+
+Built for developers. Trusted by professionals.
+
+Messari's enterprise APIs give you access to the same data that powers Messari.io—optimized for builders who need speed, depth, and reliability.
+
+If you're building in crypto, this is your edge.
+
+## Available APIs
+
+- **AI Toolkit**: Chat completion endpoint trained on real-time structured and unstructured data
+- **Metrics**: Market prices, exchange volumes, derivatives, and asset metadata
+- **Signal**: Social sentiment, mindshare, and trending topics
+- **News**: Asset-specific newsfeeds from curated crypto sources
+- **Token Unlocks**: Allocation data, vesting schedules, and upcoming unlocks
+- **Fundraising**: Deals, M&A, fundraises, and investor portfolios
+- **Key Developments**: Real-time protocol and asset event tracking
+- **Research**: Access diligence reports and institutional-grade research
+
+Ready to build with better data? Contact sales: sales@messari.io
+
+## Messari Typescript SDK
+
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  For the best developer experience, it is recommended that TS / JS users use
+  the official Messari Typescript SDK. See our [Quickstart Guide](/quickstart)
+  for detailed examples and reference.
 </Note>
-
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API endpoints require a Messari API Key for authentication. See the [Authentication](/api-reference/authentication) section for more details.
 
 ```json
-"security": [
-  {
-    "bearerAuth": []
+{
+  "headers": {
+    "x-messari-api-key": "your-api-key-here"
   }
-]
+}
 ```
