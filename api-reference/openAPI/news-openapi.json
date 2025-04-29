@@ -1,0 +1,428 @@
+{
+  "components": {
+    "schemas": {
+      "Article": {
+        "properties": {
+          "assets": {
+            "items": {
+              "$ref": "#/components/schemas/Asset"
+            },
+            "type": "array"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "publishTimeMillis": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "sentiment": {
+            "items": {
+              "$ref": "#/components/schemas/AssetSentiment"
+            },
+            "type": "array"
+          },
+          "source": {
+            "$ref": "#/components/schemas/Source"
+          },
+          "subcategory": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "assets",
+          "publishTimeMillis",
+          "source",
+          "title",
+          "url",
+          "sentiment"
+        ],
+        "type": "object"
+      },
+      "Asset": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "slug", "symbol"],
+        "type": "object"
+      },
+      "AssetSentiment": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "sentiment": {
+            "format": "double",
+            "type": "number"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "slug", "symbol", "sentiment"],
+        "type": "object"
+      },
+      "Pagination": {
+        "properties": {
+          "limit": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "page": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalPages": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "totalRows": {
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": ["limit", "page", "totalRows", "totalPages"],
+        "type": "object"
+      },
+      "Source": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sourceName": {
+            "type": "string"
+          },
+          "sourceType": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "sourceName", "sourceType"],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "in": "header",
+        "name": "X-Messari-API-Key",
+        "type": "apiKey"
+      }
+    }
+  },
+  "info": {
+    "title": "OpenAPI",
+    "version": "0.0.1"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/news/v1/news/assets": {
+      "get": {
+        "description": "Get News Feed Assets",
+        "operationId": "GetNewsFeedAssets",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Asset"
+                      },
+                      "type": "array"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Default response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Assets Tagged in News Articles",
+        "tags": ["News"]
+      }
+    },
+    "/news/v1/news/feed": {
+      "get": {
+        "description": "Gets the news feed for the user",
+        "operationId": "GetNewsFeed",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Article"
+                      },
+                      "type": "array"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Default response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get news feed",
+        "tags": ["News"]
+      }
+    },
+    "/news/v1/news/sources": {
+      "get": {
+        "description": "Get News Sources",
+        "operationId": "GetNewsSources",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Source"
+                      },
+                      "type": "array"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Default response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {},
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Sources",
+        "tags": ["News"]
+      }
+    }
+  },
+  "servers": [
+    {
+      "description": "Messari API",
+      "url": "https://api.messari.io"
+    }
+  ],
+  "tags": [
+    {
+      "name": "News"
+    }
+  ]
+}
